@@ -81,6 +81,48 @@
                             IsChecked="{Binding IsAuthPersisted}" />
                     </DockPanel>
 
+                    <!--  Default download directory  -->
+                    <DockPanel
+                        Margin="16,8"
+                        LastChildFill="False"
+                        ToolTip.Tip="{Binding LocalizationManager.DefaultDownloadDirTooltip}">
+                        <TextBlock DockPanel.Dock="Left" Text="{Binding LocalizationManager.DefaultDownloadDirLabel}" />
+                        <TextBox
+                            Width="150"
+                            Height="20"
+                            DockPanel.Dock="Right"
+                            FontSize="13"
+                            PlaceholderText="{Binding LocalizationManager.DefaultDownloadDirPlaceholderText}"
+                            Text="{Binding DefaultDownloadDirPath}"
+                            Theme="{DynamicResource CompactTextBox}">
+                            <TextBox.InnerRightContent>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button
+                                        Padding="4"
+                                        Command="{Binding ResetDefaultDownloadDirPathCommand}"
+                                        IsEnabled="{Binding DefaultDownloadDirPath, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                        Theme="{DynamicResource MaterialFlatButton}"
+                                        ToolTip.Tip="{Binding LocalizationManager.DefaultDownloadDirResetTooltip}">
+                                        <materialIcons:MaterialIcon
+                                            Width="14"
+                                            Height="14"
+                                            Kind="Close" />
+                                    </Button>
+                                    <Button
+                                        Padding="4"
+                                        Command="{Binding BrowseDefaultDownloadDirPathCommand}"
+                                        Theme="{DynamicResource MaterialFlatButton}"
+                                        ToolTip.Tip="{Binding LocalizationManager.DefaultDownloadDirBrowseTooltip}">
+                                        <materialIcons:MaterialIcon
+                                            Width="14"
+                                            Height="14"
+                                            Kind="FolderOpen" />
+                                    </Button>
+                                </StackPanel>
+                            </TextBox.InnerRightContent>
+                        </TextBox>
+                    </DockPanel>
+
                     <!--  FFmpeg path  -->
                     <DockPanel
                         Margin="16,8"

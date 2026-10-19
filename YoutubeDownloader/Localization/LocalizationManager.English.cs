@@ -72,6 +72,12 @@ public partial class LocalizationManager
                 """,
             [nameof(ParallelLimitLabel)] = "Parallel limit",
             [nameof(ParallelLimitTooltip)] = "How many downloads can be active at the same time",
+            [nameof(DefaultDownloadDirLabel)] = "Default download folder",
+            [nameof(DefaultDownloadDirTooltip)] =
+                "Folder where downloads are saved without asking. Leave empty to be asked every time.",
+            [nameof(DefaultDownloadDirPlaceholderText)] = "Ask every time",
+            [nameof(DefaultDownloadDirResetTooltip)] = "Reset to asking every time",
+            [nameof(DefaultDownloadDirBrowseTooltip)] = "Browse for download folder",
             [nameof(FFmpegPathLabel)] = "FFmpeg path",
             [nameof(FFmpegPathTooltip)] =
                 "Path to the FFmpeg executable. Leave empty to use auto-detection.",

@@ -127,6 +127,11 @@ public partial class LocalizationManager
     public string FileNameTemplateTooltip => Get();
     public string ParallelLimitLabel => Get();
     public string ParallelLimitTooltip => Get();
+    public string DefaultDownloadDirLabel => Get();
+    public string DefaultDownloadDirTooltip => Get();
+    public string DefaultDownloadDirPlaceholderText => Get();
+    public string DefaultDownloadDirResetTooltip => Get();
+    public string DefaultDownloadDirBrowseTooltip => Get();
     public string FFmpegPathLabel => Get();
     public string FFmpegPathTooltip => Get();
     public string FFmpegPathPlaceholderText => Get();

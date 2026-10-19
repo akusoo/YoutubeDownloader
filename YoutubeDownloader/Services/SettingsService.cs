@@ -50,6 +50,9 @@ public partial class SettingsService()
     public partial string FileNameTemplate { get; set; } = "$title";
 
     [ObservableProperty]
+    public partial string? DefaultDownloadDirPath { get; set; }
+
+    [ObservableProperty]
     public partial int ParallelLimit { get; set; } = 2;
 
     [ObservableProperty]
