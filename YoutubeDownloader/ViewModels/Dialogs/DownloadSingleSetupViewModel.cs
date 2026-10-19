@@ -60,15 +60,22 @@ public partial class DownloadSingleSetupViewModel(
 
         var container = SelectedDownloadOption.Container;
 
-        var filePath = await dialogManager.PromptSaveFilePathAsync(
-            [
-                new FilePickerFileType($"{container.Name} file")
-                {
-                    Patterns = [$"*.{container.Name}"],
-                },
-            ],
-            FileNameTemplate.Apply(settingsService.FileNameTemplate, Video, container)
-        );
+        var fileName = FileNameTemplate.Apply(settingsService.FileNameTemplate, Video, container);
+
+        // Skip the prompt entirely if a default download directory is configured
+        var filePath = !string.IsNullOrWhiteSpace(settingsService.DefaultDownloadDirPath)
+            ? Path.EnsureUniqueFilePath(
+                Path.Combine(settingsService.DefaultDownloadDirPath, fileName)
+            )
+            : await dialogManager.PromptSaveFilePathAsync(
+                [
+                    new FilePickerFileType($"{container.Name} file")
+                    {
+                        Patterns = [$"*.{container.Name}"],
+                    },
+                ],
+                fileName
+            );
 
         if (string.IsNullOrWhiteSpace(filePath))
             return;

@@ -99,6 +99,15 @@ public partial class SettingsViewModel : DialogViewModelBase
         set => _settingsService.FileNameTemplate = value;
     }
 
+    public string? DefaultDownloadDirPath
+    {
+        get => _settingsService.DefaultDownloadDirPath;
+        set =>
+            _settingsService.DefaultDownloadDirPath = !string.IsNullOrWhiteSpace(value)
+                ? value
+                : null;
+    }
+
     public int ParallelLimit
     {
         get => _settingsService.ParallelLimit;
@@ -126,6 +135,22 @@ public partial class SettingsViewModel : DialogViewModelBase
 
     [RelayCommand]
     private void ResetFFmpegFilePath() => FFmpegFilePath = null;
+
+    [RelayCommand]
+    private async Task BrowseDefaultDownloadDirPathAsync()
+    {
+        var dirPath = await _dialogManager.PromptDirectoryPathAsync(
+            DefaultDownloadDirPath ?? string.Empty
+        );
+
+        if (string.IsNullOrWhiteSpace(dirPath))
+            return;
+
+        DefaultDownloadDirPath = dirPath;
+    }
+
+    [RelayCommand]
+    private void ResetDefaultDownloadDirPath() => DefaultDownloadDirPath = null;
 
     protected override void Dispose(bool disposing)
     {
